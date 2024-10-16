@@ -5,7 +5,7 @@
 # <h1 align="center">**`Predicción de Fraude en Transacciones Financieras`**</h1>
 
 <p align='center'>
-<img src ="concepto-proteccion-contra-fraude-financiero-bloqueo-tarjeta-credito-llave-maestra-fondo-claro_1182900-14964.avif" width="11000px" height="450px">
+<img src ="images/concepto-proteccion-contra-fraude-financiero-bloqueo-tarjeta-credito-llave-maestra-fondo-claro_1182900-14964.avif" width="11000px" height="450px">
 <p>
 
 # Índice
