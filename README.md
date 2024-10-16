@@ -1,27 +1,26 @@
 <h1 align='center'>
- <b>PROYECTO FINTECH </b>
+ <b>🚀 PROYECTO FINTECH 💳</b>
 </h1>
 
-# <h1 align="center">**`Predicción de Fraude en Transacciones Financieras`**</h1>
+# <h1 align="center">**`🔍 Predicción de Fraude en Transacciones Financieras`**</h1>
 
 <p align='center'>
 <img src ="images/concepto-proteccion-contra-fraude-financiero-bloqueo-tarjeta-credito-llave-maestra-fondo-claro_1182900-14964.avif" width="11000px" height="450px">
 <p>
 
-# Índice
+# 🗂️ Índice
 
-1. [Introduccion](#introducción)
-2. [Contexto y Rol a Desarrollar](#contexto-y-rol-a-desarrollar)
-3. [Fuente de Datos](#fuente-de-datos)
-4. [Diccionario](#Diccionario)
-5. [ETL y EDA](#etl-y-eda)
-6. [Conclusiones](#Conclusiones)
-7. [Colaboradores](#Equipo)
-8. [Tecnologías Utilizadas](#tecnologías-utilizadas)
+1. [📖 Introducción](#introducción)
+2. [🏗️ Contexto y Rol a Desarrollar](#contexto-y-rol-a-desarrollar)
+3. [📊 Fuente de Datos](#fuente-de-datos)
+4. [📚 Diccionario](#Diccionario)
+5. [🔍 ETL y EDA](#etl-y-eda)
+6. [📈 Conclusiones](#Conclusiones)
+7. [👥 Colaboradores](#Equipo)
+8. [💻 Tecnologías Utilizadas](#tecnologías-utilizadas)
 
 
-## **Introducción:**
-
+## **📖 Introducción:**
 
 En el contexto de la creciente digitalización de los servicios financieros, la detección de fraudes en transacciones electrónicas se ha convertido en un desafío crítico para las empresas ``fintech`` y los proveedores de servicios de pago. El fraude financiero, que puede implicar la manipulación indebida de transacciones con tarjetas de crédito, cuentas bancarias o sistemas de pagos electrónicos, no solo afecta la integridad financiera de las empresas, sino también la confianza de los usuarios en las plataformas.
 
@@ -31,14 +30,14 @@ El modelo será entrenado para aprender a diferenciar entre transacciones legít
 
 Este proyecto no solo busca implementar una solución tecnológica innovadora, sino también aportar valor estratégico a la empresa al mejorar la capacidad de respuesta ante fraudes, reducir pérdidas económicas, y fortalecer la confianza de los clientes en sus transacciones financieras.
 
-
-# **Contexto y Rol a desarrollar**
+# **🏗️ Contexto y Rol a Desarrollar**
 
 El proyecto se enmarca en el contexto del sistema financiero de los `Estados Unidos`, abarcando los ``51 estados``. La cantidad de transacciones digitales ha crecido exponencialmente en los últimos años, impulsada por la digitalización del comercio y el auge de plataformas de pagos electrónicos. Este incremento ha generado un aumento proporcional en los intentos de fraude, convirtiéndose en una prioridad para las empresas ``fintech`` desarrollar sistemas robustos de detección y prevención de fraudes financieros.
 
 El análisis cubrirá un período específico que comprende desde ``enero de 2019 hasta junio de 2020``, un intervalo en el cual la adopción de pagos electrónicos aceleró debido, en parte, a la creciente penetración de las tecnologías móviles y la pandemia global, que impulsó el uso del comercio electrónico. Este contexto genera un escenario único para estudiar patrones de fraude relacionados con los cambios en los hábitos de consumo y la presión sobre los sistemas de pago digitales.
 
-### **Rol a Desarrollar:**
+### **🎯 Rol a Desarrollar:**
+
 Como Científico de Datos en este proyecto, la principal responsabilidad será desarrollar un sistema predictivo que detecte actividades fraudulentas. Esto incluye las siguientes tareas clave:
 
 - **Exploración de datos (EDA):** Analizar y comprender las características de las transacciones financieras en los diferentes estados, identificando patrones y posibles anomalías.
@@ -46,8 +45,8 @@ Como Científico de Datos en este proyecto, la principal responsabilidad será d
 - **Modelado predictivo:** Desarrollar y entrenar un modelo de machine learning que pueda clasificar de manera precisa las transacciones como legítimas o fraudulentas. 
 - **Evaluación y optimización:** Validar el desempeño del modelo utilizando métricas clave y optimizarlo para maximizar su precisión y reducir falsos positivos.
 
+## **📊 Fuente de Datos**
 
-## **Fuente de Datos**
 El conjuntos de datos de transacciones financieras
 fraudulentas se obtuvo a traves de repositorios de datos abiertos como el conjunto de datos de Fraude
 de Tarjetas de Crédito en Kaggle.
@@ -55,7 +54,7 @@ de Tarjetas de Crédito en Kaggle.
 
 Link: https://www.kaggle.com/datasets/priyamchoksi/credit-card-transactions-dataset 
 
-## **Diccionario**
+## **📚 Diccionario**
 
 El conjunto de datos utilizado en este proyecto contiene información detallada sobre transacciones financieras realizadas en diferentes comercios y estados dentro de los Estados Unidos. Cada fila del dataset representa una transacción, con una variedad de variables que describen tanto la transacción como al titular de la tarjeta, el comerciante, y la geolocalización asociada. A continuación, se presenta una descripción de cada una de las variables clave:
 
@@ -83,16 +82,11 @@ El conjunto de datos utilizado en este proyecto contiene información detallada 
 22. **is_fraud:** Indicador de si la transacción fue fraudulenta (1 para fraudulenta, 0 para no fraudulenta).  
 23. **merch_zipcode:** Código postal del comerciante.
 
-## **ETL Y EDA**
+## **🔍 ETL Y EDA**
 
+## **📈 Conclusiones**
 
-
-
-## **Conclusiones**
-
-
-## **Equipo**
-
+## **👥 Equipo**
 
 <table>
   <thead>
@@ -125,8 +119,7 @@ El conjunto de datos utilizado en este proyecto contiene información detallada 
   </tbody>
 </table>
 
-
-## **Tecnologías utilizadas**
+## **💻 Tecnologías Utilizadas**
 
 ![Static Badge](https://img.shields.io/badge/PowerBI-gray?style=flat&logo=powerbi)
 ![Static Badge](https://img.shields.io/badge/Python-gray?style=flat&logo=python)
@@ -135,5 +128,3 @@ El conjunto de datos utilizado en este proyecto contiene información detallada 
 ![Static Badge](https://img.shields.io/badge/-Seaborn-gray?style=flat&logo=seaborn)
 ![Static Badge](https://img.shields.io/badge/-Jupyter_Notebook-gray?style=flat&logo=jupyter)
 ![Static Badge](https://img.shields.io/badge/Visual_Studio_Code-gray?style=flat&logo=visual%20studio%20code&logoColor=white)
-
----
