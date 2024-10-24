@@ -102,7 +102,7 @@ El conjunto de datos utilizado en este proyecto contiene información detallada 
       <td>Natalia Lopera</td>
       <td>loperanataliaal@gmail.com</td>
       <td>Data Science | Data Analyst</td>
-      <td><a href="https://www.linkedin.com/in/cesar-augusto-garc%C3%ADa-galeano-2190bb200//" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn logo" width="20" height="20"></a></td>
+      <td><a href="https://www.linkedin.com/in/natalia-lopera//" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn logo" width="20" height="20"></a></td>
     </tr>
     <tr>
       <td>Jose Castro Rodriguez</td>
