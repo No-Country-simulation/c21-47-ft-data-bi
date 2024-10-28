@@ -302,7 +302,7 @@ elif selected == 'Análisis Tiempo':
     for option in options:
         if option == "Numero Fraude por Trimestre":
             st.write("Numero Fraude por Trimestre")
-            st.image(r"Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Cifra Total Fraude por Grupo Etario")
+            st.image("Streamlit/image/Tiempo/tiempo_fraude_por_trimestre.png", caption="Cifra Total Fraude por Grupo Etario")
 
 
     st.subheader('Conclusion:')
@@ -337,27 +337,27 @@ elif selected == 'Análisis Rango Etario':
     for option in options:
         if option == "Total Perdidas por Grupo Etario":
             st.write("Total Perdidas por Grupo Etario")
-            st.image(r"Streamlit\image\Grupo Etario\ge_cantidad_dinero.png", caption="Total Perdidas por Grupo Etario")
+            st.image("Streamlit/image/Grupo Etario/ge_cantidad_dinero.png", caption="Total Perdidas por Grupo Etario")
 
         elif option == "Distribución de Fraude por Género y Grupo Etario (Cat)":
             st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario (Cat)")
-            st.image(r"Streamlit\image\Grupo Etario\ge_distribucionCategoriasSegunGEET.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
+            st.image("Streamlit/image/Grupo Etario/ge_distribucionCategoriasSegunGEET.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
 
         elif option == "Distribución de Fraude por Género y Estados":
             st.write("Mostrando gráfico: Distribución de Fraude por Género y Estados")
-            st.image(r"Streamlit\image\Grupo Etario\ge_DistribuciongePorEstadosFraude.png", caption="Distribución de Fraude por Género y Estados")
+            st.image("Streamlit/image/Grupo Etario/ge_DistribuciongePorEstadosFraude.png", caption="Distribución de Fraude por Género y Estados")
 
         elif option == "Distribución de Fraude por Género y Grupo Etario":
             st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario")
-            st.image(r"Streamlit\image\Grupo Etario\ge_DistribucionporGenero.png", caption="Distribución de Fraude por Género y Grupo Etario")
+            st.image("Streamlit/image/Grupo Etario/ge_DistribucionporGenero.png", caption="Distribución de Fraude por Género y Grupo Etario")
 
         elif option == "Tasa Fraude Grupo Etario":
             st.write("Mostrando gráfico: Tasa de Fraude por Grupo Etario")
-            st.image(r"Streamlit\image\Grupo Etario\ge_tasa_fraude.png", caption="Tasa de Fraude por Grupo Etario")
+            st.image("Streamlit/image/Grupo Etario/ge_tasa_fraude.png", caption="Tasa de Fraude por Grupo Etario")
 
         elif option == "Tasa Fraude Nivel Consumo GE":
             st.write("Mostrando gráfico: Tasa de Fraude según Nivel de Consumo GE")
-            st.image(r"Streamlit\image\Grupo Etario\ge_tasaSegunNivelDeConsumo.png", caption="Tasa de Fraude según Nivel de Consumo GE")
+            st.image("Streamlit/image/Grupo Etario/ge_tasaSegunNivelDeConsumo.png", caption="Tasa de Fraude según Nivel de Consumo GE")
 
     st.subheader('**Conclusión**')
     st.markdown(
@@ -381,12 +381,10 @@ elif selected == 'Análisis Trabajo':
     
     df = cargar_df()
     
-    filter_frauds = df.query('is_fraud == 1')
-    filter_normal = df.query('is_fraud == 0')
     
     st.subheader('Graficas por Estados:', help=None)
     
-    st.image(r"Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
+    st.image("Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
 
     st.subheader('Conclusion:')
     st.write('')    
@@ -419,19 +417,19 @@ elif selected == 'Análisis Genero':
     for option in options:
         if option == "5 Categorias menos consumida por Genero":
             st.write("Mostrando gráfico: 5 Categorias menos consumida por Genero")
-            st.image(r"Streamlit\image\Genero\G_top5_cat_menos_consumo_porgenero.png", caption="5 Categorias menos consumida por Genero")
+            st.image("Streamlit/image/Genero/G_top5_cat_menos_consumo_porgenero.png", caption="5 Categorias menos consumida por Genero")
 
         elif option == "5 Categorias mas consumida por Genero":
             st.write("Mostrando gráfico: 5 Categorias mas consumida por Genero")
-            st.image(r"Streamlit\image\Genero\G_5cat_masporgenero.png", caption="5 Categorias mas consumida por Genero")
+            st.image("Streamlit/image/Genero/G_5cat_masporgenero.png", caption="5 Categorias mas consumida por Genero")
 
         elif option == "Distribución de Fraude por Género":
             st.write("Mostrando gráfico: Distribución de Fraude por Género")
-            st.image(r"Streamlit\image\Genero\G_distfraudegenero.png", caption="Distribución de Fraude por Género")
+            st.image("Streamlit/image/Genero/G_distfraudegenero.png", caption="Distribución de Fraude por Género")
 
         elif option == "Distribución de consumo por Género y Categoria":
             st.write("Mostrando gráfico: Distribución de consumo por Género y Categoria")
-            st.image(r"Streamlit\image\Genero\G_distribuicion_por_consumo.png", caption="Distribución de consumo por Género y Categoria")
+            st.image("Streamlit/image/Genero/G_distribuicion_por_consumo.png", caption="Distribución de consumo por Género y Categoria")
 
 
     st.subheader('**Conclusiones:**')
