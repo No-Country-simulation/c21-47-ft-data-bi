@@ -105,7 +105,7 @@ with st.sidebar:
 def cargar_df():
     try:
         # Leer archivo Parquet
-        df = pd.read_parquet(r'credit_card_transactions.parquet')
+        df = pd.read_parquet('data/credit_card_transactions.parquet')
         
         # Eliminar la columna 'Unnamed: 0' si existe
         if 'Unnamed: 0' in df.columns:
