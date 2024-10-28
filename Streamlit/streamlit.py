@@ -105,7 +105,7 @@ with st.sidebar:
 def cargar_df():
     try:
         # Leer archivo Parquet
-        df = pd.read_parquet(r'C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\credit_card_transactions.parquet')
+        df = pd.read_parquet(r'credit_card_transactions.parquet')
         
         # Eliminar la columna 'Unnamed: 0' si existe
         if 'Unnamed: 0' in df.columns:
@@ -123,7 +123,7 @@ def cargar_df():
 # Mostrar contenido específico según la opción seleccionada
 if selected == 'Principal':
     st.title("Proyecto Fintech:")
-    st.image('phishing-bancario.jpg')
+    st.image('Streamlit\phishing-bancario.jpg')
     
     '''## **Detección de Fraudes con Tarjetas de Créditos:**'''
     
@@ -241,15 +241,15 @@ if selected == 'Análisis General':
     for option in options:
         if option == "Porcentaje de fraude":
             st.write("Porcentaje de fraude")
-            st.image(r"C:/Users/Blasferp/Desktop/Data Science/Proyectos/FinTech/Streamlit/image/Analisis General/Porcentaje_fraude.png", caption="Porcentaje de fraude")
+            st.image(r"Streamlit/image/Analisis General/Porcentaje_fraude.png", caption="Porcentaje de fraude")
 
         elif option == "Histograma":
             st.write("Mostrando gráfico: Histograma")
-            st.image(r"C:/Users/Blasferp/Desktop/Data Science/Proyectos/FinTech/Streamlit/image/Analisis General/Histograma_df.png", caption="Histograma")
+            st.image(r"Streamlit/image/Analisis General/Histograma_df.png", caption="Histograma")
 
         elif option == "Violin":
             st.write("Mostrando gráfico: Violin")
-            st.image(r"C:/Users/Blasferp/Desktop/Data Science/Proyectos/FinTech/Streamlit/image/Analisis General/Violin_plot_df.png", caption="Violin")
+            st.image(r"Streamlit/image/Analisis General/Violin_plot_df.png", caption="Violin")
 
 
     # Mostrar conclusiones una sola vez, fuera del bucle
@@ -302,7 +302,7 @@ elif selected == 'Análisis Tiempo':
     for option in options:
         if option == "Numero Fraude por Trimestre":
             st.write("Numero Fraude por Trimestre")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Cifra Total Fraude por Grupo Etario")
+            st.image(r"Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Cifra Total Fraude por Grupo Etario")
 
 
     st.subheader('Conclusion:')
@@ -337,27 +337,27 @@ elif selected == 'Análisis Rango Etario':
     for option in options:
         if option == "Total Perdidas por Grupo Etario":
             st.write("Total Perdidas por Grupo Etario")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_cantidad_dinero.png", caption="Total Perdidas por Grupo Etario")
+            st.image(r"Streamlit\image\Grupo Etario\ge_cantidad_dinero.png", caption="Total Perdidas por Grupo Etario")
 
         elif option == "Distribución de Fraude por Género y Grupo Etario (Cat)":
             st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario (Cat)")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_distribucionCategoriasSegunGEET.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
+            st.image(r"Streamlit\image\Grupo Etario\ge_distribucionCategoriasSegunGEET.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
 
         elif option == "Distribución de Fraude por Género y Estados":
             st.write("Mostrando gráfico: Distribución de Fraude por Género y Estados")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_DistribuciongePorEstadosFraude.png", caption="Distribución de Fraude por Género y Estados")
+            st.image(r"Streamlit\image\Grupo Etario\ge_DistribuciongePorEstadosFraude.png", caption="Distribución de Fraude por Género y Estados")
 
         elif option == "Distribución de Fraude por Género y Grupo Etario":
             st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_DistribucionporGenero.png", caption="Distribución de Fraude por Género y Grupo Etario")
+            st.image(r"Streamlit\image\Grupo Etario\ge_DistribucionporGenero.png", caption="Distribución de Fraude por Género y Grupo Etario")
 
         elif option == "Tasa Fraude Grupo Etario":
             st.write("Mostrando gráfico: Tasa de Fraude por Grupo Etario")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_tasa_fraude.png", caption="Tasa de Fraude por Grupo Etario")
+            st.image(r"Streamlit\image\Grupo Etario\ge_tasa_fraude.png", caption="Tasa de Fraude por Grupo Etario")
 
         elif option == "Tasa Fraude Nivel Consumo GE":
             st.write("Mostrando gráfico: Tasa de Fraude según Nivel de Consumo GE")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_tasaSegunNivelDeConsumo.png", caption="Tasa de Fraude según Nivel de Consumo GE")
+            st.image(r"Streamlit\image\Grupo Etario\ge_tasaSegunNivelDeConsumo.png", caption="Tasa de Fraude según Nivel de Consumo GE")
 
     st.subheader('**Conclusión**')
     st.markdown(
@@ -419,19 +419,19 @@ elif selected == 'Análisis Genero':
     for option in options:
         if option == "5 Categorias menos consumida por Genero":
             st.write("Mostrando gráfico: 5 Categorias menos consumida por Genero")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_top5_cat_menos_consumo_porgenero.png", caption="5 Categorias menos consumida por Genero")
+            st.image(r"Streamlit\image\Genero\G_top5_cat_menos_consumo_porgenero.png", caption="5 Categorias menos consumida por Genero")
 
         elif option == "5 Categorias mas consumida por Genero":
             st.write("Mostrando gráfico: 5 Categorias mas consumida por Genero")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_5cat_masporgenero.png", caption="5 Categorias mas consumida por Genero")
+            st.image(r"Streamlit\image\Genero\G_5cat_masporgenero.png", caption="5 Categorias mas consumida por Genero")
 
         elif option == "Distribución de Fraude por Género":
             st.write("Mostrando gráfico: Distribución de Fraude por Género")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_distfraudegenero.png", caption="Distribución de Fraude por Género")
+            st.image(r"Streamlit\image\Genero\G_distfraudegenero.png", caption="Distribución de Fraude por Género")
 
         elif option == "Distribución de consumo por Género y Categoria":
             st.write("Mostrando gráfico: Distribución de consumo por Género y Categoria")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_distribuicion_por_consumo.png", caption="Distribución de consumo por Género y Categoria")
+            st.image(r"Streamlit\image\Genero\G_distribuicion_por_consumo.png", caption="Distribución de consumo por Género y Categoria")
 
 
     st.subheader('**Conclusiones:**')
@@ -482,19 +482,19 @@ elif selected == 'Análisis Ubicación':
     for option in options:
         if option == "10 Ciudades con mas Fraude":
             st.write("Mostrando gráfico: 10 Ciudades con mas Fraude")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_fraudes.png", caption="10 Ciudades con mas Fraude")
+            st.image(r"Streamlit\image\Ubicacion\10_ciudades_mas_fraudes.png", caption="10 Ciudades con mas Fraude")
 
         elif option == "10 Ciudades con mas Operaciones":
             st.write("Mostrando gráfico: 10 Ciudades con mas Operaciones")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_operaciones.png", caption="10 Ciudades con mas Operaciones")
+            st.image(r"Streamlit\image\Ubicacion\10_ciudades_mas_operaciones.png", caption="10 Ciudades con mas Operaciones")
 
         elif option == "10 Estados con mas Fraude":
             st.write("Mostrando gráfico: 10 Estados con mas Fraude")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_estados_mas_fraudess.png", caption="10 Estados con mas Fraude")
+            st.image(r"Streamlit\image\Ubicacion\10_estados_mas_fraudess.png", caption="10 Estados con mas Fraude")
 
         elif option == "10 Estados con mas Operaciones":
             st.write("Mostrando gráfico: 10 Estados con mas Operaciones")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\ub_estados_monto_mas_fraude.png", caption="10 Estados con mas Operaciones")
+            st.image(r"Streamlit\image\Ubicacion\ub_estados_monto_mas_fraude.png", caption="10 Estados con mas Operaciones")
 
     st.subheader('Conclusion:')
     st.markdown('**Conclusiones**\n\n'
@@ -536,19 +536,19 @@ elif selected == 'Análisis Categorías':
     for option in options:
         if option == "10 Categorias con mas Fraude":
             st.write("Mostrando gráfico: 10 Categorias con mas Fraude")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\10_categorias_mas_fraude.png", caption="10 Categorias con mas Fraude")
+            st.image(r"Streamlit\image\Categoria\10_categorias_mas_fraude.png", caption="10 Categorias con mas Fraude")
 
         elif option == "10 Categorias con mas Operaciones":
             st.write("Mostrando gráfico: 10 Categorias con mas Operaciones")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\10_categorias_mas_operaciones.png", caption="10 Categorias con mas Operaciones")
+            st.image(r"Streamlit\image\Categoria\10_categorias_mas_operaciones.png", caption="10 Categorias con mas Operaciones")
 
         elif option == "Distribucion Consumo por Genero y Categoria":
             st.write("Mostrando gráfico: Distribucion Consumo por Genero y Categoria")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\cat_DIstribucionGE.png", caption="Distribucion Consumo por Genero y Categoria")
+            st.image(r"Streamlit\image\Categoria\cat_DIstribucionGE.png", caption="Distribucion Consumo por Genero y Categoria")
 
         elif option == "Tasa Fraude por Categoria":
             st.write("Mostrando gráfico: Tasa Fraude por Categoria")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\tasa_categoria.png", caption="Tasa Fraude por Categoria")
+            st.image(r"Streamlit\image\Categoria\tasa_categoria.png", caption="Tasa Fraude por Categoria")
     
     st.subheader('**Conclusiones**:')
     st.markdown(
