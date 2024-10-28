@@ -123,7 +123,7 @@ def cargar_df():
 # Mostrar contenido específico según la opción seleccionada
 if selected == 'Principal':
     st.title("Proyecto Fintech:")
-    st.image('phishing-bancario.jpg')
+    st.image('Streamlit\phishing-bancario.jpg')
     
     '''## **Detección de Fraudes con Tarjetas de Créditos:**'''
     
