@@ -105,7 +105,7 @@ with st.sidebar:
 def cargar_df():
     try:
         # Leer archivo Parquet
-        df = pd.read_parquet(r'credit_card_transactions.parquet')
+        df = pd.read_parquet('data/credit_card_transactions.parquet')
         
         # Eliminar la columna 'Unnamed: 0' si existe
         if 'Unnamed: 0' in df.columns:
@@ -241,15 +241,15 @@ if selected == 'Análisis General':
     for option in options:
         if option == "Porcentaje de fraude":
             st.write("Porcentaje de fraude")
-            st.image(r"Streamlit/image/Analisis General/Porcentaje_fraude.png", caption="Porcentaje de fraude")
+            st.image("Streamlit/image/Analisis General/Porcentaje_fraude.png", caption="Porcentaje de fraude")
 
         elif option == "Histograma":
             st.write("Mostrando gráfico: Histograma")
-            st.image(r"Streamlit/image/Analisis General/Histograma_df.png", caption="Histograma")
+            st.image("Streamlit/image/Analisis General/Histograma_df.png", caption="Histograma")
 
         elif option == "Violin":
             st.write("Mostrando gráfico: Violin")
-            st.image(r"Streamlit/image/Analisis General/Violin_plot_df.png", caption="Violin")
+            st.image("Streamlit/image/Analisis General/Violin_plot_df.png", caption="Violin")
 
 
     # Mostrar conclusiones una sola vez, fuera del bucle
