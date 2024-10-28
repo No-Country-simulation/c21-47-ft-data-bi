@@ -2,10 +2,23 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.graph_objects as go
+import plotly.express as px
+# import pandas_profiling
 
 from streamlit_option_menu import option_menu
-from datetime import datetime
+# from streamlit_pandas_profiling import st_profile_report
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
+from graficos_funcion import graficas_barras, graficas_barras_apiladas, graficas_barras_agrupadas
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 
+##########################################################################################################################
+
+
+#################################################################################################################################
 
 # Obtener la fecha actual en español
 meses = [
@@ -42,9 +55,6 @@ st.markdown(
 # Separar con línea horizontal
 st.sidebar.markdown("<hr>", unsafe_allow_html=True)
 
-# Configuración del menú principal en la barra lateral
-from streamlit_option_menu import option_menu
-import streamlit as st
 
 # Configuración del menú principal en la barra lateral
 with st.sidebar:
@@ -54,11 +64,11 @@ with st.sidebar:
             'Principal', 
             'Sistema de Detección de Fraude', 
             'Transacciones', 
-            'Análisis Monto', 
+            'Análisis General', 
             'Análisis Tiempo', 
-            'Análisis Edad', 
+            'Análisis Rango Etario', 
             'Análisis Trabajo', 
-            'Análisis Sexo', 
+            'Análisis Genero', 
             'Análisis Ubicación',
             'Análisis Categorías'
         ],
@@ -95,7 +105,7 @@ with st.sidebar:
 def cargar_df():
     try:
         # Leer archivo Parquet
-        df = pd.read_parquet('credit_card_transactions.parquet')
+        df = pd.read_parquet(r'C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\credit_card_transactions.parquet')
         
         # Eliminar la columna 'Unnamed: 0' si existe
         if 'Unnamed: 0' in df.columns:
@@ -205,37 +215,160 @@ elif selected == 'Transacciones':
     
 #############################################################################################################
 
-elif selected == 'Análisis Monto':
-
+if selected == 'Análisis General':
+    
     # Título de la aplicación
     st.title("Análisis Monto 💰")
-    # st.image('')
     st.write('\n')
-    # st.subheader('Selecciona una Opción', help=None)
-
     
+    df = cargar_df()
+    
+    filter_frauds = df.query('is_fraud == 1')
+    filter_normal = df.query('is_fraud == 0')
+    
+    st.subheader('Gráficas General:', help=None)
+    
+    options = st.multiselect(
+        "Selecciona Gráfico de Categorías",
+        [
+            "Porcentaje de fraude", 
+            "Histograma", 
+            "Violin"
+        ]
+    )
+
+    # Bucle para mostrar cada gráfico seleccionado
+    for option in options:
+        if option == "Porcentaje de fraude":
+            st.write("Porcentaje de fraude")
+            st.image(r"C:/Users/Blasferp/Desktop/Data Science/Proyectos/FinTech/Streamlit/image/Analisis General/Porcentaje_fraude.png", caption="Porcentaje de fraude")
+
+        elif option == "Histograma":
+            st.write("Mostrando gráfico: Histograma")
+            st.image(r"C:/Users/Blasferp/Desktop/Data Science/Proyectos/FinTech/Streamlit/image/Analisis General/Histograma_df.png", caption="Histograma")
+
+        elif option == "Violin":
+            st.write("Mostrando gráfico: Violin")
+            st.image(r"C:/Users/Blasferp/Desktop/Data Science/Proyectos/FinTech/Streamlit/image/Analisis General/Violin_plot_df.png", caption="Violin")
+
+
+    # Mostrar conclusiones una sola vez, fuera del bucle
+    st.subheader('**Comentarios:**\n\n')
+    st.markdown(
+                '- El DataFrame posee un total de __1296675__ registros y __23__ columnas, únicamente posee una sola columna con datos nulos, la columna __merch_zipcode__.\n\n'
+                '- Se puede observar que hay columnas que deberían modificarse para mejorar su tratamiento, ``trans_date_trans_time``, ``dob``, ``unix_time`` que corresponden a datos de tiempo, se encuentran en otro formato. Igualmente, merch_zipcode debería ser de tipo int64.\n\n'
+                '- Además, se creará una columna __age__ que permita la clasificación de los clientes en función de su edad con el objetivo de observar la distribución de fraudes por edad.\n\n'
+                '- La única columna con valores faltantes es __merch_zipcode__, con un total de 195,973 registros ausentes, lo que representa un 0.66% del total de los datos. Dado que este porcentaje es relativamente bajo, es importante evaluar si la ausencia de esta información afecta de manera significativa los registros clasificados como fraudulentos. Un análisis detallado sobre cómo estos valores nulos podrían influir en la detección de fraudes permitirá decidir si es necesario aplicar técnicas de imputación, eliminación de registros, o si su impacto es lo suficientemente marginal como para ser ignorado.')
+    
+    # Mostrar conclusiones una sola vez, fuera del bucle
+    st.subheader('**Conclusión:**\n\n')
+    st.markdown('Este análisis revela que:\n\n'
+                '- Las transacciones tienen una gran variabilidad en términos de monto.\n\n'
+                '- Las ciudades involucradas en las transacciones varían ampliamente en tamaño, pero la mayoría de las transacciones ocurren en ciudades pequeñas.\n\n'
+                '- La distribución de los años de nacimiento muestra una concentración de usuarios de entre 40 y 60 años, siendo la mayoría mayores de 48 años.\n\n'
+               ' **Observaciones sobre las Variables:**\n\n'
+
+               ' 1. **monto**:\n\n'  
+                'La variable **`amt`** presenta una gran dispersión en sus valores, lo que sugiere una amplia variedad en el monto de las transacciones. Sin embargo, también se observan varios **outliers**, lo que podría indicar transacciones con valores extremadamente elevados, o en su defecto, errores de entrada de datos. Estos valores atípicos deben ser revisados con más detalle para determinar si son casos válidos o errores de ingreso.'
+
+                '2. **Población de la Ciudad**:\n\n'  
+                'La variable **`city_pop`** muestra un rango extremadamente amplio, con algunos valores que son significativamente grandes. Esto sugiere la posibilidad de **errores de registro** o **registros excepcionales** relacionados con ciertas ubicaciones geográficas. Es recomendable investigar la fuente de estos valores para asegurarse de que la información sea precisa y confiable.'
+
+                '3. **Edad**:\n\n'  
+                'A diferencia de las otras variables, la **`dob`** no presenta **outliers**, lo que indica que los datos relacionados con la edad son **relativamente homogéneos** y están dentro del rango esperado. Esto sugiere que no hay errores significativos en la recopilación de datos de edad, y los valores parecen ser consistentes y confiables.')
 #########################################################################################################
 
 elif selected == 'Análisis Tiempo':
     # Título de la aplicación
     st.title("Análisis Tiempo  ⏰")    
-    # st.image('')
     st.write('\n')
-    # st.subheader('Selecciona una Opcion', help=None)  
+    
+    df = cargar_df()
 
-                  
+    # Definir opciones y preseleccionar algunas
+    options = st.multiselect(
+        "Selecciona Gráfico de Categorías",
+        [
+            "Numero Fraude por Trimestre", 
+            # "Distribución de Fraude por Género y Grupo Etario (Cat)", 
+            # "Distribución de Fraude por Género y Estados", 
+            # "Distribución de Fraude por Género y Grupo Etario", 
+            # "Tasa Fraude Grupo Etario", 
+            # "Tasa Fraude Nivel Consumo GE"
+        ]
+    )
+
+    # Bucle para mostrar cada gráfico seleccionado
+    for option in options:
+        if option == "Numero Fraude por Trimestre":
+            st.write("Numero Fraude por Trimestre")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Cifra Total Fraude por Grupo Etario")
+
+
+    st.subheader('Conclusion:')
+    st.write('')
+             
 #########################################################################################################
 
-elif selected == 'Análisis Edad':
+elif selected == 'Análisis Rango Etario':
     
     # Título de la aplicación
-    st.title("Análisis Edad👶👴")
+    st.title("Análisis Rango Etario")
     # st.image('')
     st.write("\n")
-    st.subheader('Selecciona una Opcion')
-         
-                    
-                    
+    
+    df = cargar_df()
+    filter_frauds = df.query('is_fraud == 1')
+    filter_normal = df.query('is_fraud == 0')    
+    
+    options = st.multiselect(
+        "Selecciona Gráfico de Categorías",
+        [
+            "Total Perdidas por Grupo Etario", 
+            "Distribución de Fraude por Género y Grupo Etario (Cat)", 
+            "Distribución de Fraude por Género y Estados", 
+            "Distribución de Fraude por Género y Grupo Etario", 
+            "Tasa Fraude Grupo Etario", 
+            "Tasa Fraude Nivel Consumo GE"
+        ]
+    )
+
+    # Bucle para mostrar cada gráfico seleccionado
+    for option in options:
+        if option == "Total Perdidas por Grupo Etario":
+            st.write("Total Perdidas por Grupo Etario")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_cantidad_dinero.png", caption="Total Perdidas por Grupo Etario")
+
+        elif option == "Distribución de Fraude por Género y Grupo Etario (Cat)":
+            st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario (Cat)")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_distribucionCategoriasSegunGEET.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
+
+        elif option == "Distribución de Fraude por Género y Estados":
+            st.write("Mostrando gráfico: Distribución de Fraude por Género y Estados")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_DistribuciongePorEstadosFraude.png", caption="Distribución de Fraude por Género y Estados")
+
+        elif option == "Distribución de Fraude por Género y Grupo Etario":
+            st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_DistribucionporGenero.png", caption="Distribución de Fraude por Género y Grupo Etario")
+
+        elif option == "Tasa Fraude Grupo Etario":
+            st.write("Mostrando gráfico: Tasa de Fraude por Grupo Etario")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_tasa_fraude.png", caption="Tasa de Fraude por Grupo Etario")
+
+        elif option == "Tasa Fraude Nivel Consumo GE":
+            st.write("Mostrando gráfico: Tasa de Fraude según Nivel de Consumo GE")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Grupo Etario\ge_tasaSegunNivelDeConsumo.png", caption="Tasa de Fraude según Nivel de Consumo GE")
+
+    st.subheader('**Conclusión**')
+    st.markdown(
+                '- Los fraudes tienden a concentrarse en las personas de mediana edad, especialmente en los rangos de **40-55 años** y **25-40 años**. \n\n'
+                '- En la mayoría de los rangos etarios, los hombres son ligeramente más propensos a ser víctimas de fraudes, excepto en los grupos de **25-40 años** y **mayores de 70 años**, donde las mujeres superan en número a los hombres.\n\n'
+               ' - Las personas **menores de 25 años** son las menos afectadas, lo cual puede estar relacionado con factores como menor actividad financiera o menor exposición a situaciones de riesgo.\n\n'
+                '- El análisis sugiere que las estrategias de prevención de fraudes deberían enfocarse en los grupos etarios de **40 a 70 años**, dado que son los más vulnerables.\n\n'
+               ' - No necesariamente los comercios con mayor cantidad de transacciones son los más propensos a fraudes, ya que algunos con muchas operaciones tienen un porcentaje bajo de fraude.\n\n'
+            '- Los comercios con un alto porcentaje de fraude, aunque no lideran en número total de transacciones, pueden representar un riesgo elevado debido a la mayor proporción de fraudes en comparación con las operaciones legítimas.'
+            )
+            
 #####################################################################################################   
 
 elif selected == 'Análisis Trabajo':
@@ -246,21 +379,87 @@ elif selected == 'Análisis Trabajo':
     st.write('\n')   
     st.subheader('Selecciona una Opcion', help=None)
     
+    df = cargar_df()
     
-   
+    filter_frauds = df.query('is_fraud == 1')
+    filter_normal = df.query('is_fraud == 0')
+    
+    st.subheader('Graficas por Estados:', help=None)
+    
+    st.image(r"Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
 
-    
+    st.subheader('Conclusion:')
+    st.write('')    
 ########################################################################################################################   
     
-elif selected == 'Análisis Sexo':
+elif selected == 'Análisis Genero':
     
             
     # Título de la aplicación
     st.title("Análisis Sexo ⚧")
     # st.image('')
-    st.write('\n')
-    st.subheader('Selecciona una Opcion', help=None) 
+    st.write('\n') 
     
+    df = cargar_df()
+    
+    filter_frauds = df.query('is_fraud == 1')
+    filter_normal = df.query('is_fraud == 0')
+    
+    st.subheader('Graficas por Estados:', help=None)
+    
+    # Definir opciones y preseleccionar algunas
+    options = st.multiselect(
+        "Selecciona Gráfico de Categorías",
+        [
+            "Cifra Total Fraude por Grupo Etario", 
+            "Distribución de Fraude por Género y Grupo Etario (Cat)", 
+            "Distribución de Fraude por Género y Estados", 
+            "Distribución de Fraude por Género y Grupo Etario", 
+            "Tasa Fraude Grupo Etario", 
+            "Tasa Fraude Nivel Consumo GE"
+        ]
+    )
+
+    # Bucle para mostrar cada gráfico seleccionado
+    for option in options:
+        if option == "Cifra Total Fraude por Grupo Etario":
+            st.write("Mostrando gráfico: Cifra Total Fraude por Grupo Etario")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_categorias_mas_fraude.png", caption="Cifra Total Fraude por Grupo Etario")
+
+        elif option == "Distribución de Fraude por Género y Grupo Etario (Cat)":
+            st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario (Cat)")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_categorias_mas_operaciones.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
+
+        elif option == "Distribución de Fraude por Género y Estados":
+            st.write("Mostrando gráfico: Distribución de Fraude por Género y Estados")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_fraudes.png", caption="Distribución de Fraude por Género y Estados")
+
+        elif option == "Distribución de Fraude por Género y Grupo Etario":
+            st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario")
+            st.image(r"Streamlit\image\Grupo Etario\ge_DistribucionporGenero.png", caption="Distribución de Fraude por Género y Grupo Etario")
+
+        elif option == "Tasa Fraude Grupo Etario":
+            st.write("Mostrando gráfico: Tasa de Fraude por Grupo Etario")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_operaciones.png", caption="Tasa de Fraude por Grupo Etario")
+
+        elif option == "Tasa Fraude Nivel Consumo GE":
+            st.write("Mostrando gráfico: Tasa de Fraude según Nivel de Consumo GE")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\ub_estados_monto_mas_fraude.png", caption="Tasa de Fraude según Nivel de Consumo GE")
+
+    st.subheader('**Conclusiones:**')
+    st.markdown(
+                '**Predomina el Fraude Masculino**:\n\n'
+                '- En general, el fraude parece ser más común entre los hombres en la mayoría de los estados. Esto se observa claramente en estados como **CA**, **TX**, y **MI**, donde los hombres tienen una mayor participación en las actividades fraudulentas.\n\n'
+                
+                '**Estados con Mayor Frecuencia de Fraudes**:\n\n'
+                '- Los estados con el mayor número de fraudes incluyen **NY**, **TX**, y **PA**. Estos estados también presentan un volumen considerable de fraudes por género, lo que indica que podrían ser focos clave de atención para la prevención de fraudes.\n\n'
+                
+                '**Diferencia Menor en Alabama**:\n\n'
+                '- En **AL**, la diferencia entre fraudes masculinos y femeninos es muy pequeña. Esto sugiere que, en este estado en particular, las estrategias de prevención de fraudes deberían tener en cuenta una distribución más equilibrada entre géneros.\n\n'
+
+                '**Relevancia de las Estrategias de Prevención**:\n\n'
+                '- Los estados con más fraudes (como **NY**, **TX**, **PA**) podrían requerir estrategias de prevención de fraudes más rigurosas debido al alto volumen de fraudes en estos lugares.\n\n'
+                '- Además, las diferencias de género observadas sugieren que las campañas de prevención de fraudes podrían beneficiarse de una segmentación según el género, especialmente en estados con una gran diferencia entre el número de fraudes masculinos y femeninos.')
     
 ########################################################################################################################   
     
@@ -271,7 +470,50 @@ elif selected == 'Análisis Ubicación':
     st.title("Análisis Ubicación 📍")
     # st.image('')
     st.write('\n')
-    st.subheader('Selecciona una Opcion', help=None) 
+     
+    
+    df = cargar_df()
+    
+    filter_frauds = df.query('is_fraud == 1')
+    filter_normal = df.query('is_fraud == 0')
+    
+    st.subheader('Graficas por Estados:', help=None)
+
+    # Definir opciones y preseleccionar algunas
+    options = st.multiselect(
+        "Selecciona Gráfico de Categorías",
+        [
+            "10 Ciudades con mas Fraude", 
+            "10 Ciudades con mas Operaciones", 
+            "10 Estados con mas Fraude", 
+            "10 Estados con mas Operaciones"
+        ]
+    )
+
+    # Bucle para mostrar cada gráfico seleccionado
+    for option in options:
+        if option == "10 Ciudades con mas Fraude":
+            st.write("Mostrando gráfico: 10 Ciudades con mas Fraude")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_fraudes.png", caption="10 Ciudades con mas Fraude")
+
+        elif option == "10 Ciudades con mas Operaciones":
+            st.write("Mostrando gráfico: 10 Ciudades con mas Operaciones")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_operaciones.png", caption="10 Ciudades con mas Operaciones")
+
+        elif option == "10 Estados con mas Fraude":
+            st.write("Mostrando gráfico: 10 Estados con mas Fraude")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_estados_mas_fraudess.png", caption="10 Estados con mas Fraude")
+
+        elif option == "10 Estados con mas Operaciones":
+            st.write("Mostrando gráfico: 10 Estados con mas Operaciones")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\ub_estados_monto_mas_fraude.png", caption="10 Estados con mas Operaciones")
+
+    st.subheader('Conclusion:')
+    st.markdown('**Conclusiones**\n\n'
+'- **Houston** es el estado con la mayor actividad tanto en operaciones como en fraudes, lo que podría indicar la necesidad de implementar controles más estrictos en las transacciones en esta región.\n\n'
+'- Es recomendable realizar un análisis más detallado en **Warren**, **Huntsville**, **Naples**, y **Dallas** para entender mejor los patrones de fraude y posibles áreas de riesgo.\n\n'
+'- La diferencia entre los estados con más transacciones y los estados con más fraudes sugiere que el volumen transaccional no siempre correlaciona directamente con el riesgo de fraude. Esto puede ser importante al diseñar estrategias para mitigar fraudes en áreas de alto volumen transaccional.\n\n'
+'- Al comparar ambos gráficos, se observa que los estados con mayor número de operaciones no siempre coinciden con los estados con mayor número de fraudes. Sin embargo, estados como **Houston**, **Warren**, y **Huntsville** aparecen en ambos listados, lo que sugiere que estos estados no solo tienen una alta actividad transaccional, sino también un mayor riesgo de fraude.')
     
 ########################################################################################################################   
     
@@ -281,4 +523,53 @@ elif selected == 'Análisis Categorías':
     st.title("Análisis Categorías 📊")
     # st.image('')
     st.write('\n')
-    st.subheader('Selecciona una Opcion', help=None) 
+   
+
+    df = cargar_df()
+    
+    filter_frauds = df.query('is_fraud == 1')
+    filter_normal = df.query('is_fraud == 0')
+    
+    st.subheader('Graficas por Categorias:', help=None)
+    
+    
+    # Definir opciones y preseleccionar algunas
+    options = st.multiselect(
+        "Selecciona Gráfico de Categorías",
+        [
+            "10 Categorias con mas Fraude", 
+            "10 Categorias con mas Operaciones", 
+            "Distribucion Consumo por Genero y Categoria", 
+            "Tasa Fraude por Categoria"
+        ]
+    )
+
+    # Bucle para mostrar cada gráfico seleccionado
+    for option in options:
+        if option == "10 Categorias con mas Fraude":
+            st.write("Mostrando gráfico: 10 Categorias con mas Fraude")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\10_categorias_mas_fraude.png", caption="10 Categorias con mas Fraude")
+
+        elif option == "10 Categorias con mas Operaciones":
+            st.write("Mostrando gráfico: 10 Categorias con mas Operaciones")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\10_categorias_mas_operaciones.png", caption="10 Categorias con mas Operaciones")
+
+        elif option == "Distribucion Consumo por Genero y Categoria":
+            st.write("Mostrando gráfico: Distribucion Consumo por Genero y Categoria")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\cat_DIstribucionGE.png", caption="Distribucion Consumo por Genero y Categoria")
+
+        elif option == "Tasa Fraude por Categoria":
+            st.write("Mostrando gráfico: Tasa Fraude por Categoria")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Categoria\tasa_categoria.png", caption="Tasa Fraude por Categoria")
+    
+    st.subheader('**Conclusiones**:')
+    st.markdown(
+'- Las categorías con mayor número de transacciones, como **Gas_transport**, **Grocery_pos**, y **Home**, son claves en la vida diaria de los usuarios. Sin embargo, la alta incidencia de fraudes en **Grocery_pos** y **Shopping_net** requiere una atención particular.\n\n'
+'- Las categorías más frecuentes como **Gas_transport** y **Grocery_pos** reflejan transacciones cotidianas y necesarias, como el transporte y la compra de alimentos. Esto podría indicar que son áreas clave en la vida financiera de los usuarios.\n\n'
+'- Las categorías como **Shopping_pos** y **Entertainment** demuestran que también existe una alta actividad en el comercio de bienes de consumo y ocio.\n\n'
+'- Las categorías que combinan un alto volumen de transacciones con un número elevado de fraudes, como **Grocery_pos** y **Shopping_net**, deben ser priorizadas para implementar medidas de prevención y control de fraudes.\n\n'
+'- La presencia de **Misc_net** y **Shopping_pos** en la lista de fraudes indica que las transacciones en línea, tanto en servicios diversos como en puntos de venta, son particularmente susceptibles a fraudes.\n\n'
+'- **Grocery_pos** y **Shopping_net** lideran tanto en términos de volumen de transacciones como en incidencias de fraude. Esto sugiere que las categorías de productos de consumo diario y compras en línea son especialmente vulnerables a fraudes.\n\n'
+'- Aunque **Gas_transport** es una categoría con un alto volumen de transacciones, el hecho de que también aparezca en la lista de categorías con fraude podría indicar que, a pesar de su prevalencia, las medidas de seguridad podrían necesitar revisión.\n\n'
+'- Las medidas de prevención de fraude podrían beneficiarse de un enfoque en las transacciones en línea, dado que **Shopping_net** y **Misc_net** están entre las categorías más susceptibles a actividades fraudulentas.')
+    
