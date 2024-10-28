@@ -147,7 +147,7 @@ if selected == 'Sistema de Detección de Fraude':
     
     # Título de la aplicación
     st.title("Sistema de Detección de Fraude 🔍")
-    # st.image('')
+    
     st.write('\n')
    
 
@@ -402,49 +402,37 @@ elif selected == 'Análisis Genero':
     
     df = cargar_df()
     
-    filter_frauds = df.query('is_fraud == 1')
-    filter_normal = df.query('is_fraud == 0')
-    
     st.subheader('Graficas por Estados:', help=None)
     
     # Definir opciones y preseleccionar algunas
     options = st.multiselect(
         "Selecciona Gráfico de Categorías",
         [
-            "Cifra Total Fraude por Grupo Etario", 
-            "Distribución de Fraude por Género y Grupo Etario (Cat)", 
-            "Distribución de Fraude por Género y Estados", 
-            "Distribución de Fraude por Género y Grupo Etario", 
-            "Tasa Fraude Grupo Etario", 
-            "Tasa Fraude Nivel Consumo GE"
+            "5 Categorias menos consumida por Genero", 
+            "5 Categorias mas consumida por Genero", 
+            "Distribución de Fraude por Género", 
+            "Distribución de consumo por Género y Categoria"
         ]
     )
 
     # Bucle para mostrar cada gráfico seleccionado
     for option in options:
-        if option == "Cifra Total Fraude por Grupo Etario":
-            st.write("Mostrando gráfico: Cifra Total Fraude por Grupo Etario")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_categorias_mas_fraude.png", caption="Cifra Total Fraude por Grupo Etario")
+        if option == "5 Categorias menos consumida por Genero":
+            st.write("Mostrando gráfico: 5 Categorias menos consumida por Genero")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_top5_cat_menos_consumo_porgenero.png", caption="5 Categorias menos consumida por Genero")
 
-        elif option == "Distribución de Fraude por Género y Grupo Etario (Cat)":
-            st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario (Cat)")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_categorias_mas_operaciones.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
+        elif option == "5 Categorias mas consumida por Genero":
+            st.write("Mostrando gráfico: 5 Categorias mas consumida por Genero")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_5cat_masporgenero.png", caption="5 Categorias mas consumida por Genero")
 
-        elif option == "Distribución de Fraude por Género y Estados":
-            st.write("Mostrando gráfico: Distribución de Fraude por Género y Estados")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_fraudes.png", caption="Distribución de Fraude por Género y Estados")
+        elif option == "Distribución de Fraude por Género":
+            st.write("Mostrando gráfico: Distribución de Fraude por Género")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_distfraudegenero.png", caption="Distribución de Fraude por Género")
 
-        elif option == "Distribución de Fraude por Género y Grupo Etario":
-            st.write("Mostrando gráfico: Distribución de Fraude por Género y Grupo Etario")
-            st.image(r"Streamlit\image\Grupo Etario\ge_DistribucionporGenero.png", caption="Distribución de Fraude por Género y Grupo Etario")
+        elif option == "Distribución de consumo por Género y Categoria":
+            st.write("Mostrando gráfico: Distribución de consumo por Género y Categoria")
+            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Genero\G_distribuicion_por_consumo.png", caption="Distribución de consumo por Género y Categoria")
 
-        elif option == "Tasa Fraude Grupo Etario":
-            st.write("Mostrando gráfico: Tasa de Fraude por Grupo Etario")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\10_ciudades_mas_operaciones.png", caption="Tasa de Fraude por Grupo Etario")
-
-        elif option == "Tasa Fraude Nivel Consumo GE":
-            st.write("Mostrando gráfico: Tasa de Fraude según Nivel de Consumo GE")
-            st.image(r"C:\Users\Blasferp\Desktop\Data Science\Proyectos\FinTech\Streamlit\image\Ubicacion\ub_estados_monto_mas_fraude.png", caption="Tasa de Fraude según Nivel de Consumo GE")
 
     st.subheader('**Conclusiones:**')
     st.markdown(
