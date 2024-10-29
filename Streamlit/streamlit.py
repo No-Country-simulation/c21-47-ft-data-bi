@@ -384,7 +384,7 @@ elif selected == 'Análisis Trabajo':
     
     st.subheader('Graficas por Estados:', help=None)
     
-    st.image("Streamlit\image\Tiempo\tiempo_fraude_por_trimestre.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
+    st.image("Streamlit/image/Tiempo/tiempo_fraude_por_trimestre.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
 
     st.subheader('Conclusion:')
     st.write('')    
@@ -480,19 +480,19 @@ elif selected == 'Análisis Ubicación':
     for option in options:
         if option == "10 Ciudades con mas Fraude":
             st.write("Mostrando gráfico: 10 Ciudades con mas Fraude")
-            st.image(r"Streamlit\image\Ubicacion\10_ciudades_mas_fraudes.png", caption="10 Ciudades con mas Fraude")
+            st.image("Streamlit/image/Ubicacion/10_ciudades_mas_fraudes.png", caption="10 Ciudades con mas Fraude")
 
         elif option == "10 Ciudades con mas Operaciones":
             st.write("Mostrando gráfico: 10 Ciudades con mas Operaciones")
-            st.image(r"Streamlit\image\Ubicacion\10_ciudades_mas_operaciones.png", caption="10 Ciudades con mas Operaciones")
+            st.image("Streamlit/image/Ubicacion/10_ciudades_mas_operaciones.png", caption="10 Ciudades con mas Operaciones")
 
         elif option == "10 Estados con mas Fraude":
             st.write("Mostrando gráfico: 10 Estados con mas Fraude")
-            st.image(r"Streamlit\image\Ubicacion\10_estados_mas_fraudess.png", caption="10 Estados con mas Fraude")
+            st.image("Streamlit/image/Ubicacion/10_estados_mas_fraudess.png", caption="10 Estados con mas Fraude")
 
         elif option == "10 Estados con mas Operaciones":
             st.write("Mostrando gráfico: 10 Estados con mas Operaciones")
-            st.image(r"Streamlit\image\Ubicacion\ub_estados_monto_mas_fraude.png", caption="10 Estados con mas Operaciones")
+            st.image("Streamlit/image/Ubicacion/ub_estados_monto_mas_fraude.png", caption="10 Estados con mas Operaciones")
 
     st.subheader('Conclusion:')
     st.markdown('**Conclusiones**\n\n'
@@ -534,19 +534,19 @@ elif selected == 'Análisis Categorías':
     for option in options:
         if option == "10 Categorias con mas Fraude":
             st.write("Mostrando gráfico: 10 Categorias con mas Fraude")
-            st.image(r"Streamlit\image\Categoria\10_categorias_mas_fraude.png", caption="10 Categorias con mas Fraude")
+            st.image("Streamlit/image/Categoria/10_categorias_mas_fraude.png", caption="10 Categorias con mas Fraude")
 
         elif option == "10 Categorias con mas Operaciones":
             st.write("Mostrando gráfico: 10 Categorias con mas Operaciones")
-            st.image(r"Streamlit\image\Categoria\10_categorias_mas_operaciones.png", caption="10 Categorias con mas Operaciones")
+            st.image("Streamlit/image/Categoria/10_categorias_mas_operaciones.png", caption="10 Categorias con mas Operaciones")
 
         elif option == "Distribucion Consumo por Genero y Categoria":
             st.write("Mostrando gráfico: Distribucion Consumo por Genero y Categoria")
-            st.image(r"Streamlit\image\Categoria\cat_DIstribucionGE.png", caption="Distribucion Consumo por Genero y Categoria")
+            st.image("Streamlit/image/Categoria/cat_DIstribucionGE.png", caption="Distribucion Consumo por Genero y Categoria")
 
         elif option == "Tasa Fraude por Categoria":
             st.write("Mostrando gráfico: Tasa Fraude por Categoria")
-            st.image(r"Streamlit\image\Categoria\tasa_categoria.png", caption="Tasa Fraude por Categoria")
+            st.image("Streamlit/image/Categoria/tasa_categoria.png", caption="Tasa Fraude por Categoria")
     
     st.subheader('**Conclusiones**:')
     st.markdown(
@@ -558,4 +558,3 @@ elif selected == 'Análisis Categorías':
 '- **Grocery_pos** y **Shopping_net** lideran tanto en términos de volumen de transacciones como en incidencias de fraude. Esto sugiere que las categorías de productos de consumo diario y compras en línea son especialmente vulnerables a fraudes.\n\n'
 '- Aunque **Gas_transport** es una categoría con un alto volumen de transacciones, el hecho de que también aparezca en la lista de categorías con fraude podría indicar que, a pesar de su prevalencia, las medidas de seguridad podrían necesitar revisión.\n\n'
 '- Las medidas de prevención de fraude podrían beneficiarse de un enfoque en las transacciones en línea, dado que **Shopping_net** y **Misc_net** están entre las categorías más susceptibles a actividades fraudulentas.')
-    
