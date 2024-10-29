@@ -373,24 +373,6 @@ elif selected == 'Análisis Rango Etario':
             )
             
 #####################################################################################################   
-
-elif selected == 'Análisis Trabajo':
-    
-    # Título de la aplicación
-    st.title("Análisis Trabajo 💼")
-    # st.image('')
-    st.write('\n')   
-    st.subheader('Selecciona una Opcion', help=None)
-    
-    df = cargar_df()
-    
-    
-    st.subheader('Graficas por Estados:', help=None)
-    
-    st.image("Streamlit/image/Tiempo/tiempo_fraude_por_trimestre.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
-
-    st.subheader('**Conclusiones:**')
-    st.markdown()  
 ########################################################################################################################   
     
 elif selected == 'Análisis Genero':
