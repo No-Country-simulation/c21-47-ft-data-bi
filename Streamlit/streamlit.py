@@ -143,7 +143,7 @@ if selected == 'Principal':
 ############################################################################################################
 
 
-if selected == 'Sistema de Detección de Fraude':
+elif selected == 'Sistema de Detección de Fraude':
     
     # Título de la aplicación
     st.title("Sistema de Detección de Fraude 🔍")
@@ -215,10 +215,10 @@ elif selected == 'Transacciones':
     
 #############################################################################################################
 
-if selected == 'Análisis General':
+elif selected == 'Análisis General':
     
     # Título de la aplicación
-    st.title("Análisis Monto 💰")
+    st.title("Análisis General 💰")
     st.write('\n')
     
     df = cargar_df()
@@ -288,26 +288,31 @@ elif selected == 'Análisis Tiempo':
     # Definir opciones y preseleccionar algunas
     options = st.multiselect(
         "Selecciona Gráfico de Categorías",
-        [
-            "Numero Fraude por Trimestre", 
-            # "Distribución de Fraude por Género y Grupo Etario (Cat)", 
-            # "Distribución de Fraude por Género y Estados", 
-            # "Distribución de Fraude por Género y Grupo Etario", 
-            # "Tasa Fraude Grupo Etario", 
-            # "Tasa Fraude Nivel Consumo GE"
+        [   "Numero Fraude por Trimestre",
+            "Cantidad Operaciones por Dia", 
+            "Cantidad Operaciones por Mes", 
+            "Cantidad Operaciones por Cuatrimestre"
         ]
     )
 
     # Bucle para mostrar cada gráfico seleccionado
     for option in options:
         if option == "Numero Fraude por Trimestre":
-            st.write("Numero Fraude por Trimestre")
-            st.image("Streamlit/image/Tiempo/tiempo_fraude_por_trimestre.png", caption="Cifra Total Fraude por Grupo Etario")
+            st.write("Mostrando gráfico: Numero Fraude por Trimestre")
+            st.image("Streamlit/image/Tiempo/tiempo_fraude_por_trimestre.png", caption="Numero Fraude por Trimestre")
+        
+        if option == "Cantidad Operaciones por Dia":
+            st.write("Mostrando gráfico: Cantidad Operaciones por Dia")
+            st.image("Streamlit/image/Tiempo/T_operaciones_dia.png", caption="Cantidad Operaciones por Dia")
 
+        elif option == "Cantidad Operaciones por Mes":
+            st.write("Mostrando gráfico: Cantidad Operaciones por Mes")
+            st.image("Streamlit/image/Tiempo/T_operaciones_mes.png", caption="Cantidad Operaciones por Mes")
 
-    st.subheader('Conclusion:')
-    st.write('')
-             
+        elif option == "Cantidad Operaciones por Cuatrimestre":
+            st.write("Mostrando gráfico: Cantidad Operaciones por Cuatrimestre")
+            st.image("Streamlit/image/Tiempo/tiempo_fraude_por_trimestre.png", caption="Cantidad Operaciones por Cuatrimestre")
+                        
 #########################################################################################################
 
 elif selected == 'Análisis Rango Etario':
@@ -318,8 +323,6 @@ elif selected == 'Análisis Rango Etario':
     st.write("\n")
     
     df = cargar_df()
-    filter_frauds = df.query('is_fraud == 1')
-    filter_normal = df.query('is_fraud == 0')    
     
     options = st.multiselect(
         "Selecciona Gráfico de Categorías",
@@ -386,8 +389,8 @@ elif selected == 'Análisis Trabajo':
     
     st.image("Streamlit/image/Tiempo/tiempo_fraude_por_trimestre.png", caption="Distribución de Fraude por Género y Grupo Etario (Cat)")
 
-    st.subheader('Conclusion:')
-    st.write('')    
+    st.subheader('**Conclusiones:**')
+    st.markdown()  
 ########################################################################################################################   
     
 elif selected == 'Análisis Genero':
@@ -412,6 +415,8 @@ elif selected == 'Análisis Genero':
             "Distribución de consumo por Género y Categoria"
         ]
     )
+
+
 
     # Bucle para mostrar cada gráfico seleccionado
     for option in options:
