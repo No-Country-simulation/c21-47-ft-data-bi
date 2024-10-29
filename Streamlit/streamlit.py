@@ -67,7 +67,6 @@ with st.sidebar:
             'Análisis General', 
             'Análisis Tiempo', 
             'Análisis Rango Etario', 
-            'Análisis Trabajo', 
             'Análisis Genero', 
             'Análisis Ubicación',
             'Análisis Categorías'
@@ -544,4 +543,5 @@ elif selected == 'Análisis Categorías':
 '- La presencia de **Misc_net** y **Shopping_pos** en la lista de fraudes indica que las transacciones en línea, tanto en servicios diversos como en puntos de venta, son particularmente susceptibles a fraudes.\n\n'
 '- **Grocery_pos** y **Shopping_net** lideran tanto en términos de volumen de transacciones como en incidencias de fraude. Esto sugiere que las categorías de productos de consumo diario y compras en línea son especialmente vulnerables a fraudes.\n\n'
 '- Aunque **Gas_transport** es una categoría con un alto volumen de transacciones, el hecho de que también aparezca en la lista de categorías con fraude podría indicar que, a pesar de su prevalencia, las medidas de seguridad podrían necesitar revisión.\n\n'
-'- Las medidas de prevención de fraude podrían beneficiarse de un enfoque en las transacciones en línea, dado que **Shopping_net** y **Misc_net** están entre las categorías más susceptibles a actividades fraudulentas.')
+'- Las medidas de prevención de fraude podrían beneficiarse de un enfoque en las transacciones en línea,' 
+'dado que **Shopping_net** y **Misc_net** están entre las categorías más susceptibles a actividades fraudulentas.')
